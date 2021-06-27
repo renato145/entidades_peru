@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { createIsSelectedAtom, mapSelectionAtom } from "../atoms/map";
+import { createSelectionStatusAtom, mapSelectionAtom } from "../atoms/map";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
 import { ScaleSequential } from "d3";
 import { createDepartamentoDataAtom } from "../atoms/data";
@@ -16,7 +16,7 @@ export const Departamento: React.FC<Props> = ({
   scale,
 }) => {
   const { isSelectedAtom, departamentoDataAtom } = useMemo(() => {
-    const isSelectedAtom = createIsSelectedAtom(departamento);
+    const isSelectedAtom = createSelectionStatusAtom(departamento);
     const departamentoDataAtom = createDepartamentoDataAtom(departamento);
     return { isSelectedAtom, departamentoDataAtom };
   }, [departamento]);
@@ -26,8 +26,9 @@ export const Departamento: React.FC<Props> = ({
 
   return (
     <path
-      className={`land ${isSelected ? "selected-land" : ""}`}
+      className={`land ${isSelected === "selected" ? "selected-land" : ""}`}
       fill={scale(departamentoData?.total ?? 0)}
+      opacity={isSelected === "other" ? 0.5 : 1.0}
       d={path}
       onPointerEnter={() => setMapSelection(departamento)}
       onPointerLeave={() => setMapSelection(null)}

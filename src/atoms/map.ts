@@ -3,8 +3,15 @@ import { dataSummaryAtom } from "./data";
 
 export const mapSelectionAtom = atom<string | null>(null);
 
-export const createIsSelectedAtom = (check: string) =>
-  atom((get) => get(mapSelectionAtom) === check);
+export const createSelectionStatusAtom = (check: string) =>
+  atom((get) => {
+    const mapSelection = get(mapSelectionAtom);
+    return mapSelection === null
+      ? "empty"
+      : mapSelection === check
+      ? "selected"
+      : "other";
+  });
 
 export const selectedDataAtom = atom((get) => {
   const selection = get(mapSelectionAtom);
