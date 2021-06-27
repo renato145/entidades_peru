@@ -2,6 +2,8 @@ import React, { useMemo } from "react";
 import { useAtomValue } from "jotai/utils";
 import { geoMercator, geoPath } from "d3";
 import { geodataAtom } from "../atoms/data";
+import { Departamento } from "./Departamento";
+import "./Map.css";
 
 export const Map: React.FC = () => {
   const data = useAtomValue(geodataAtom);
@@ -11,9 +13,13 @@ export const Map: React.FC = () => {
   }, [data]);
 
   return (
-    <svg className="" width={300} viewBox="0 0 540 800">
+    <svg className="max-w-[400px]" viewBox="0 0 540 800">
       {data.features.map((feature, i) => (
-        <path key={i} className="fill-[#296365]" d={path(feature) as string} />
+        <Departamento
+          key={i}
+          departamento={feature.properties.departamento}
+          path={path(feature) as string}
+        />
       ))}
     </svg>
   );

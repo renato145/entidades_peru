@@ -1,0 +1,7 @@
+.land {
+	fill: #296365;
+}
+
+.land.selected-land {
+	fill: #558f91;
+}

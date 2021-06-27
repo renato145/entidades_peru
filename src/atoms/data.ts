@@ -25,7 +25,10 @@ export const geodataAtom = atom(async () => {
   // await sleep(1000);
   const data = await json("departamentos.json").then((topology) => {
     const featureCollection = feature(topology as any, "departamentos");
-    return featureCollection as any as GeoJSON.FeatureCollection;
+    return featureCollection as any as GeoJSON.FeatureCollection<
+      GeoJSON.Geometry,
+      { departamento: string }
+    >;
   });
   return data;
 });
