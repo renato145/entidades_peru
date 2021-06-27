@@ -1,7 +1,10 @@
 .land {
-	fill: #296365;
+	@apply transition-all;
+	stroke: #888;
+	stroke-width: 1px;
 }
 
 .land.selected-land {
-	fill: #558f91;
+	stroke: #444;
+	stroke-width: 2.5px;
 }

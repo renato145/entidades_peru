@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { csv, json, rollup, rollups, descending, sum, max } from "d3";
+import { csv, json, rollup, rollups, descending, sum, max, map } from "d3";
 import { feature } from "topojson-client";
 
 export interface TData {
@@ -11,6 +11,7 @@ export interface TData {
   sector: string;
 }
 
+/** Aggregates data to get counts */
 export const getSummary = (data: TData[]) => {
   const entries = rollups(
     data,
@@ -24,18 +25,31 @@ export const getSummary = (data: TData[]) => {
   };
 };
 
-export const dataAtom = atom(async () => {
-  return await csv("entidades.csv", (row: any) => row as TData);
+/** Load raw data */
+export const dataAtom = atom(
+  async () => await csv("entidades.csv", (row: any) => row as TData)
+);
+
+/** Aggregated data as d3 map for each departamento */
+export const dataSummaryAtom = atom((get) =>
+  rollup(get(dataAtom), getSummary, (o) => o.departamento)
+);
+
+/** Aggregated data for all the country */
+export const dataSummaryAllAtom = atom((get) => getSummary(get(dataAtom)));
+
+/** Get an atom with the aggregated data for a departamento */
+export const createDepartamentoDataAtom = (departamento: string) =>
+  atom((get) => get(dataSummaryAtom).get(departamento));
+
+/** Get the max number of entities on a departamento  */
+export const maxCountAtom = atom((get) => {
+  const data = get(dataSummaryAtom);
+  const maxCount = max(map(data.values(), ({ total }) => total));
+  return maxCount ?? 0;
 });
 
-export const dataSummaryAtom = atom((get) => {
-  return rollup(get(dataAtom), getSummary, (o) => o.departamento);
-});
-
-export const dataSummaryAllAtom = atom((get) => {
-  return getSummary(get(dataAtom));
-});
-
+/** Load geojson data */
 export const geodataAtom = atom(async () => {
   const data = await json("departamentos.json").then((topology) => {
     const featureCollection = feature(topology as any, "departamentos");

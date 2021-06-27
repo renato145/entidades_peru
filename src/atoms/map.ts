@@ -3,7 +3,7 @@ import { dataSummaryAtom } from "./data";
 
 export const mapSelectionAtom = atom<string | null>(null);
 
-export const isSelectedAtom = (check: string) =>
+export const createIsSelectedAtom = (check: string) =>
   atom((get) => get(mapSelectionAtom) === check);
 
 export const selectionDataAtom = atom((get) => {
