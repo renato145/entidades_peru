@@ -7,11 +7,16 @@ export const App = () => {
   return (
     <Provider>
       <div className="container max-w-screen-lg mx-auto mt-2">
-        <h1 className="text-center text-3xl font-bold">Entidades públicas Perú</h1>
+        <h1 className="text-center text-3xl font-bold">
+          Entidades públicas Perú
+        </h1>
         <Suspense fallback={<p>Loading...</p>}>
           <div className="mt-4 p-2 flex flex-wrap justify-evenly">
             <Map />
-            <DetailsView />
+            <div className="ml-2 flex-1 flex flex-wrap flex-col max-w-[300px]">
+              <DetailsView />
+              <p className="mt-4">Some plot settings here</p>
+            </div>
           </div>
         </Suspense>
       </div>
