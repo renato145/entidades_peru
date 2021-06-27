@@ -10,6 +10,7 @@ specifiers:
   '@types/node': ^15.12.4
   '@types/react': ^17.0.11
   '@types/react-dom': ^17.0.8
+  '@types/topojson-client': ^3.1.0
   autoprefixer: ^9
   d3: ^7.0.0
   jotai: ^1.1.0
@@ -18,6 +19,7 @@ specifiers:
   react-dom: ^17.0.2
   react-scripts: 4.0.3
   tailwindcss: npm:@tailwindcss/postcss7-compat@^2.2.4
+  topojson-client: ^3.1.0
   typescript: ^4.3.4
   web-vitals: ^2.0.1
 
@@ -35,11 +37,13 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-scripts: 4.0.3_react@17.0.2+typescript@4.3.4
+  topojson-client: 3.1.0
   typescript: 4.3.4
   web-vitals: 2.0.1
 
 devDependencies:
   '@types/d3': 7.0.0
+  '@types/topojson-client': 3.1.0
   autoprefixer: 9.8.6
   postcss: 7.0.36
   tailwindcss: /@tailwindcss/postcss7-compat/2.2.4
@@ -2502,6 +2506,19 @@ packages:
     dependencies:
       '@types/jest': 26.0.23
     dev: false
+
+  /@types/topojson-client/3.1.0:
+    resolution: {integrity: sha512-wmjTmMkF6k6m3Tn4mIyRjw8KUQZLHB1TxNcpGYirvV/aCINkC0eMJsUO/OPMkKIB6VO5iA6Vp39bmAq6QgvSfA==}
+    dependencies:
+      '@types/geojson': 7946.0.7
+      '@types/topojson-specification': 1.0.1
+    dev: true
+
+  /@types/topojson-specification/1.0.1:
+    resolution: {integrity: sha512-ZZYZUgkmUls9Uhxx2WZNt9f/h2+H3abUUjOVmq+AaaDFckC5oAwd+MDp95kBirk+XCXrYj0hfpI6DSUiJMrpYQ==}
+    dependencies:
+      '@types/geojson': 7946.0.7
+    dev: true
 
   /@types/uglify-js/3.13.0:
     resolution: {integrity: sha512-EGkrJD5Uy+Pg0NUR8uA4bJ5WMfljyad0G+784vLCNUkD+QwOJXUbBYExXfVGf7YtyzdQp3L/XMYcliB987kL5Q==}
@@ -11508,6 +11525,13 @@ packages:
   /toidentifier/1.0.0:
     resolution: {integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==}
     engines: {node: '>=0.6'}
+    dev: false
+
+  /topojson-client/3.1.0:
+    resolution: {integrity: sha512-605uxS6bcYxGXw9qi62XyrV6Q3xwbndjachmNxu8HWTtVPxZfEJN9fd/SZS1Q54Sn2y0TMyMxFj/cJINqGHrKw==}
+    hasBin: true
+    dependencies:
+      commander: 2.20.3
     dev: false
 
   /tough-cookie/4.0.0:
