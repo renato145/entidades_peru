@@ -1,15 +1,7 @@
 import { atom } from "jotai";
 import { csv, json, rollup, rollups, descending, sum, max, map } from "d3";
 import { feature } from "topojson-client";
-
-export interface TData {
-  departamento: string;
-  distrito: string;
-  entidad: string;
-  poder: string;
-  provincia: string;
-  sector: string;
-}
+import { TData } from "../types";
 
 /** Aggregates data to get counts */
 export const getSummary = (data: TData[]) => {

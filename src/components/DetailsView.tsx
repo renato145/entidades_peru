@@ -2,13 +2,13 @@ import React from "react";
 import { useAtomValue } from "jotai/utils";
 import { format } from "d3";
 import { dataSummaryAllAtom } from "../atoms/data";
-import { mapSelectionAtom, selectionDataAtom } from "../atoms/map";
+import { mapSelectionAtom, selectedDataAtom } from "../atoms/map";
 
 const formatNumber = format(",");
 
 export const DetailsView: React.FC = () => {
   const mapSelection = useAtomValue(mapSelectionAtom);
-  const selectionData = useAtomValue(selectionDataAtom);
+  const selectionData = useAtomValue(selectedDataAtom);
   const allData = useAtomValue(dataSummaryAllAtom);
   const showData = selectionData ?? allData;
 
@@ -25,7 +25,7 @@ export const DetailsView: React.FC = () => {
                 {poder} ({n})
               </p>
               <div
-                className="bg-blue-500 h-3"
+                className="bg-blue-900 h-3"
                 style={{ width: `${(100 * n) / showData.max}%` }}
               />
             </div>

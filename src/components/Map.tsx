@@ -4,12 +4,30 @@ import { geoMercator, geoPath, scaleSequential, interpolateBlues } from "d3";
 import { geodataAtom, maxCountAtom } from "../atoms/data";
 import { Departamento } from "./Departamento";
 import "./Map.css";
+import { Margins, Size } from "../types";
+import { ColorLegend } from "./ColorLegend";
+
+const mapSize: Size = { width: 540, height: 800 };
+const svgSize: Size = { width: mapSize.width, height: mapSize.height + 80 };
+const legendMargins: Margins = {
+  left: 20,
+  right: 20,
+  top: 10,
+  bottom: 0,
+};
+const legendSize: Size = {
+  width: svgSize.width - legendMargins.left - legendMargins.right,
+  height: 30,
+};
 
 export const Map: React.FC = () => {
   const data = useAtomValue(geodataAtom);
   const maxEntities = useAtomValue(maxCountAtom);
   const path = useMemo(() => {
-    const projection = geoMercator().fitSize([540, 800], data);
+    const projection = geoMercator().fitSize(
+      [mapSize.width, mapSize.height],
+      data
+    );
     return geoPath(projection);
   }, [data]);
   const scale = useMemo(
@@ -19,7 +37,10 @@ export const Map: React.FC = () => {
   );
 
   return (
-    <svg className="max-w-[400px]" viewBox="0 0 540 800">
+    <svg
+      className="max-w-[400px]"
+      viewBox={`0 0 ${svgSize.width} ${svgSize.height}`}
+    >
       {data.features.map((feature, i) => (
         <Departamento
           key={i}
@@ -28,6 +49,12 @@ export const Map: React.FC = () => {
           scale={scale}
         />
       ))}
+      <ColorLegend
+        mapSize={mapSize}
+        legendSize={legendSize}
+        legendMargins={legendMargins}
+        scale={scale}
+      />
     </svg>
   );
 };
