@@ -8,9 +8,9 @@ import { DataTable } from "./components/DataTable";
 export const App = () => {
   return (
     <Provider>
-      <div className="container mx-auto mt-2">
+      <div className="container mx-auto mt-4">
         <h1 className="text-center text-4xl font-semibold">
-          Entidades públicas Perú
+          Entidades del estado peruano
         </h1>
         <Suspense fallback={<p>Loading...</p>}>
           <div className="mt-8 p-2 flex flex-col">
