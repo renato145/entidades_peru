@@ -69,7 +69,7 @@ export const ColorLegend: React.FC<Props> = ({
         >
           {colorVar === "number"
             ? "Nro de entidades"
-            : "Nro de entidades por mil habitantes"}
+            : "Nro de entidades por 100mil habitantes"}
         </text>
         <rect
           width={legendSize.width}
