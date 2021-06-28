@@ -27,6 +27,15 @@ export const Departamento: React.FC<Props> = ({
   return (
     <path
       className={`land ${isSelected === "selected" ? "selected-land" : ""}`}
+      // transform={departamento === 'Callao' ? "translate(-200,-680), scale(2.0)" : ""}
+      // transform={
+      //   departamento === "Callao" ? "scale(4),translate(-150,-380)" : ""
+      // }
+      transform={
+        departamento === "Callao" ? "scale(4),translate(-140,-384)" : ""
+      }
+      style={departamento === "Callao" ? {strokeWidth: 0.3} : {}}
+      scale={1.9}
       fill={scale(departamentoData?.total ?? 0)}
       opacity={isSelected === "other" ? 0.6 : 1.0}
       d={path}
