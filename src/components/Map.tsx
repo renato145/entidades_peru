@@ -39,7 +39,7 @@ export const Map: React.FC = () => {
 
   return (
     <svg
-      className="max-w-[400px]"
+      className="max-w-[400px] max-h-[650px]"
       viewBox={`0 0 ${svgSize.width} ${svgSize.height}`}
     >
       {data.features.map((feature, i) => (

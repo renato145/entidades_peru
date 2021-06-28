@@ -33,7 +33,7 @@ export const DataTable: React.FC<HTMLProps<HTMLDivElement>> = (props) => {
             {headers.map((header, i) => (
               <th
                 key={i}
-                className={`px-3 py-2 bg-blue-400 text-lg font-medium tracking-wide whitespace-pre-line ${
+                className={`px-3 py-2 bg-blue-500 text-white text-lg font-medium tracking-wide whitespace-pre-line ${
                   i === 0
                     ? "rounded-tl-lg"
                     : i === headers.length - 1
