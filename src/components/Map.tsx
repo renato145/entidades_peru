@@ -9,7 +9,7 @@ import { maxColorVarAtom } from "../atoms/plotSettings";
 import "./Map.css";
 
 const mapSize: Size = { width: 540, height: 800 };
-const svgSize: Size = { width: mapSize.width, height: mapSize.height + 100 };
+const svgSize: Size = { width: mapSize.width, height: mapSize.height + 75 };
 const legendMargins: Margins = {
   left: 20,
   right: 20,

@@ -3,6 +3,7 @@ import { Provider } from "jotai";
 import { Map } from "./components/Map";
 import { DetailsView } from "./components/DetailsView";
 import { PlotSettings } from "./components/PlotSettings";
+import { DataTable } from "./components/DataTable";
 
 export const App = () => {
   return (
@@ -20,7 +21,7 @@ export const App = () => {
                 <DetailsView className="mt-6" />
               </div>
             </div>
-            <div className="mt-2 self-center">Some table with details</div>
+            <DataTable className="mt-2 self-center" />
           </div>
         </Suspense>
       </div>
