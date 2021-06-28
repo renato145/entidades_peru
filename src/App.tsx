@@ -21,8 +21,8 @@ export const App = () => {
                 <DetailsView className="mt-6" />
               </div>
               <div className="flex flex-col">
-                <button className="self-end mr-3 text-sm font-medium text-blue-800 hover:text-blue-600">
-                  Ver información acerca de la data: TODO
+                <button className="self-end mr-2 text-sm font-medium text-blue-800 hover:text-blue-600">
+                  (Ver información acerca de las fuentes de datos)
                 </button>
                 <DataTable className="self-center" />
               </div>
