@@ -1,9 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-	body {
-		@apply text-gray-900 antialiased bg-gray-50;
+  body {
+    @apply text-gray-900 antialiased bg-gray-50 font-custom;
+  }
+}
+
+@layer utilities {
+	.font-custom {
+		font-family: "Oswald", sans-serif;
 	}
 }

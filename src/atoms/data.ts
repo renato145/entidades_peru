@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { csv, json, rollups, descending, sum, max, map } from "d3";
+import { csv, json, rollups, descending, sum, max } from "d3";
 import { feature } from "topojson-client";
 import { TData, TPopulationData, TSummaryData } from "../types";
 
@@ -76,13 +76,6 @@ export const dataSummaryAllAtom = atom<TSummaryData>((get) => {
 /** Get an atom with the aggregated data for a departamento */
 export const createDepartamentoDataAtom = (departamento: string) =>
   atom((get) => get(dataSummaryAtom).get(departamento));
-
-/** Get the max number of entities on a departamento  */
-export const maxCountAtom = atom((get) => {
-  const data = get(dataSummaryAtom);
-  const maxCount = max(map(data.values(), ({ total }) => total));
-  return maxCount ?? 0;
-});
 
 /** Load geojson data */
 export const geodataAtom = atom(async () => {

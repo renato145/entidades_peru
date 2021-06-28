@@ -3,6 +3,7 @@ import { createSelectionStatusAtom, mapSelectionAtom } from "../atoms/map";
 import { useAtomValue, useUpdateAtom } from "jotai/utils";
 import { ScaleSequential } from "d3";
 import { createDepartamentoDataAtom } from "../atoms/data";
+import { colorVarAtom } from "../atoms/plotSettings";
 
 interface Props {
   departamento: string;
@@ -23,6 +24,14 @@ export const Departamento: React.FC<Props> = ({
   const isSelected = useAtomValue(isSelectedAtom);
   const departamentoData = useAtomValue(departamentoDataAtom);
   const setMapSelection = useUpdateAtom(mapSelectionAtom);
+  const colorVar = useAtomValue(colorVarAtom);
+  const fillColor = scale(
+    departamentoData === undefined
+      ? 0
+      : colorVar === "number"
+      ? departamentoData.total
+      : departamentoData.density
+  );
 
   return (
     <path
@@ -30,9 +39,9 @@ export const Departamento: React.FC<Props> = ({
       transform={
         departamento === "Callao" ? "scale(4),translate(-140,-384)" : ""
       }
-      style={departamento === "Callao" ? {strokeWidth: 0.3} : {}}
+      style={departamento === "Callao" ? { strokeWidth: 0.3 } : {}}
       scale={1.9}
-      fill={scale(departamentoData?.total ?? 0)}
+      fill={fillColor}
       opacity={isSelected === "other" ? 0.6 : 1.0}
       d={path}
       onPointerEnter={() => setMapSelection(departamento)}

@@ -1,11 +1,12 @@
 import React, { useMemo } from "react";
 import { useAtomValue } from "jotai/utils";
 import { geoMercator, geoPath, scaleSequential, interpolateBlues } from "d3";
-import { geodataAtom, maxCountAtom } from "../atoms/data";
+import { geodataAtom } from "../atoms/data";
 import { Departamento } from "./Departamento";
-import "./Map.css";
 import { Margins, Size } from "../types";
 import { ColorLegend } from "./ColorLegend";
+import { maxColorVarAtom } from "../atoms/plotSettings";
+import "./Map.css";
 
 const mapSize: Size = { width: 540, height: 800 };
 const svgSize: Size = { width: mapSize.width, height: mapSize.height + 100 };
@@ -22,7 +23,7 @@ const legendSize: Size = {
 
 export const Map: React.FC = () => {
   const data = useAtomValue(geodataAtom);
-  const maxEntities = useAtomValue(maxCountAtom);
+  const maxColorVar = useAtomValue(maxColorVarAtom);
   const path = useMemo(() => {
     const projection = geoMercator().fitSize(
       [mapSize.width, mapSize.height],
@@ -32,8 +33,8 @@ export const Map: React.FC = () => {
   }, [data]);
   const scale = useMemo(
     () =>
-      scaleSequential().domain([0, maxEntities]).interpolator(interpolateBlues),
-    [maxEntities]
+      scaleSequential().domain([0, maxColorVar]).interpolator(interpolateBlues),
+    [maxColorVar]
   );
 
   return (

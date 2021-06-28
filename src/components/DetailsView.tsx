@@ -16,16 +16,16 @@ export const DetailsView: React.FC<HTMLProps<HTMLDivElement>> = ({
 
   return (
     <div {...props}>
-      <p className="text-xl font-semibold">
+      <p className="text-2xl font-semibold">
         {mapSelection ?? "Perú"}: {formatNumber(showData.total)} entidades
       </p>
-      <p className="text-sm font-semibold text-gray-500">
+      <p className="text-sm tracking-wide font-semibold text-gray-500">
         {showData.density.toFixed(1)} entidades por cada 100mil habitantes
       </p>
       <div className="mt-2 w-full flex flex-col space-y-1">
         {showData.entries.map(([poder, n], i) => (
           <div key={i}>
-            <p className="text-sm font-semibold">
+            <p className="text-sm text-gray-800 font-semibold tracking-wider">
               {poder} ({n})
             </p>
             <div

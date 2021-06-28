@@ -1,5 +1,5 @@
 import React, { HTMLProps } from "react";
-import { useUpdateAtom } from "jotai/utils";
+import { useAtom } from "jotai";
 import { colorVarAtom } from "../atoms/plotSettings";
 
 const Btn: React.FC<HTMLProps<HTMLButtonElement>> = ({
@@ -9,7 +9,7 @@ const Btn: React.FC<HTMLProps<HTMLButtonElement>> = ({
   ...props
 }) => (
   <button
-    className="px-2 py-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-800 shadow rounded text-white text-sm font-medium focus:outline-none focus:ring transition"
+    className="px-2 py-2 bg-blue-400 disabled:bg-blue-500 hover:bg-blue-600 active:bg-blue-800 shadow rounded text-white tracking-wide focus:outline-none focus:ring disabled:ring-4 disabled:ring-blue-800 transition"
     {...props}
   >
     {children}
@@ -17,15 +17,21 @@ const Btn: React.FC<HTMLProps<HTMLButtonElement>> = ({
 );
 
 export const PlotSettings: React.FC<HTMLProps<HTMLDivElement>> = (props) => {
-  const setColorVar = useUpdateAtom(colorVarAtom);
+  const [colorVar, setColorVar] = useAtom(colorVarAtom);
 
   return (
     <div {...props}>
       <div className="flex flex-col space-y-2">
-        <Btn onClick={() => setColorVar("number")}>
+        <Btn
+          onClick={() => setColorVar("number")}
+          disabled={colorVar === "number"}
+        >
           Visualizar por número de entidades
         </Btn>
-        <Btn onClick={() => setColorVar("density")}>
+        <Btn
+          onClick={() => setColorVar("density")}
+          disabled={colorVar === "density"}
+        >
           <p>Visualizar por densidad</p>
           (entidades por cada 100mil habitantes)
         </Btn>

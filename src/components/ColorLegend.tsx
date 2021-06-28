@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import { range, ScaleSequential, format } from "d3";
+import { range, ScaleSequential } from "d3";
 import { useAtomValue } from "jotai/utils";
-import { Margins, Size } from "../types";
+import { ColorVar, Margins, Size } from "../types";
 import { selectedDataAtom } from "../atoms/map";
 import { colorVarAtom } from "../atoms/plotSettings";
 
@@ -17,7 +17,8 @@ interface Props {
 }
 
 const getAnchor = (p: number) => (p < 20 ? "start" : p > 80 ? "end" : "middle");
-const formatNumber = format(",");
+const formatNumber = (x: number, colorVar: ColorVar) =>
+  colorVar === "number" ? x : x.toFixed(1);
 
 export const ColorLegend: React.FC<Props> = ({
   mapSize,
@@ -35,9 +36,15 @@ export const ColorLegend: React.FC<Props> = ({
   );
   const [x0, x1] = scale.domain();
   const selectedData = useAtomValue(selectedDataAtom);
-  const selectedDataPerc = ((selectedData?.total ?? 0 - x0) / x1) * 100;
-  const selectedDataX = (selectedDataPerc * legendSize.width) / 100;
   const colorVar = useAtomValue(colorVarAtom);
+  const selectedDataValue =
+    selectedData === null
+      ? 0
+      : colorVar === "number"
+      ? selectedData.total
+      : selectedData.density;
+  const selectedDataPerc = ((selectedDataValue - x0) / x1) * 100;
+  const selectedDataX = (selectedDataPerc * legendSize.width) / 100;
 
   return (
     <g>
@@ -64,8 +71,8 @@ export const ColorLegend: React.FC<Props> = ({
       >
         <text
           x={2}
-          y={-6}
-          className="text-sm text-gray-800 fill-current font-semibold"
+          y={-7}
+          className="text-lg tracking-wide text-gray-800 fill-current font-semibold"
         >
           {colorVar === "number"
             ? "Nro de entidades"
@@ -99,9 +106,9 @@ export const ColorLegend: React.FC<Props> = ({
                     x={x}
                     y={tickHeight + textOffset}
                     textAnchor={getAnchor(stop)}
-                    className="text-xs text-gray-800 fill-current"
+                    className="text-sm text-gray-800 font-semibold fill-current"
                   >
-                    {formatNumber(x0 + (stop / 100) * (x1 - x0))}
+                    {formatNumber(x0 + (stop / 100) * (x1 - x0), colorVar)}
                   </text>
                 </g>
               );
@@ -122,10 +129,13 @@ export const ColorLegend: React.FC<Props> = ({
               transform={`translate(${selectedDataX},${0})`}
               y={tickHeight + textOffset}
               textAnchor={getAnchor(selectedDataPerc)}
-              className="text-sm text-gray-800 fill-current font-semibold transition-transform"
+              className="text-gray-800 fill-current font-semibold transition-transform"
             >
               {selectedData !== null
-                ? `${selectedData.name} (${formatNumber(selectedData.total)})`
+                ? `${selectedData.name} (${formatNumber(
+                    selectedDataValue,
+                    colorVar
+                  )})`
                 : ""}
             </text>
           </g>
