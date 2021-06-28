@@ -27,10 +27,6 @@ export const Departamento: React.FC<Props> = ({
   return (
     <path
       className={`land ${isSelected === "selected" ? "selected-land" : ""}`}
-      // transform={departamento === 'Callao' ? "translate(-200,-680), scale(2.0)" : ""}
-      // transform={
-      //   departamento === "Callao" ? "scale(4),translate(-150,-380)" : ""
-      // }
       transform={
         departamento === "Callao" ? "scale(4),translate(-140,-384)" : ""
       }
