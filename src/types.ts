@@ -7,5 +7,7 @@ export interface TData {
   sector: string;
 }
 
+export type ColorVar = "number" | "density";
+
 export type Margins = Record<"left" | "right" | "top" | "bottom", number>;
 export type Size = Record<"width" | "height", number>;
