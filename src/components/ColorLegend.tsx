@@ -96,28 +96,28 @@ export const ColorLegend: React.FC<Props> = ({
               );
             })
           }
-          {
-            // Selected Tick
-            selectedData !== null ? (
-              <g>
-                <line
-                  x1={selectedDataX}
-                  x2={selectedDataX}
-                  y1={0}
-                  y2={tickHeight}
-                  className="text-gray-800 stroke-current"
-                />
-                <text
-                  x={selectedDataX}
-                  y={tickHeight + textOffset}
-                  textAnchor={getAnchor(selectedDataPerc)}
-                  className="text-sm text-gray-800 fill-current font-semibold"
-                >
-                  {`${selectedData.name} (${formatNumber(selectedData.total)})`}
-                </text>
-              </g>
-            ) : null
-          }
+          {/* Selected tick */}
+          <g
+            opacity={selectedData === null ? 0 : 1}
+            className="transition-opacity"
+          >
+            <line
+              transform={`translate(${selectedDataX},${0})`}
+              y1={0}
+              y2={tickHeight}
+              className="text-gray-800 stroke-current transition-transform"
+            />
+            <text
+              transform={`translate(${selectedDataX},${0})`}
+              y={tickHeight + textOffset}
+              textAnchor={getAnchor(selectedDataPerc)}
+              className="text-sm text-gray-800 fill-current font-semibold transition-transform"
+            >
+              {selectedData !== null
+                ? `${selectedData.name} (${formatNumber(selectedData.total)})`
+                : ""}
+            </text>
+          </g>
         </g>
       </g>
     </g>
