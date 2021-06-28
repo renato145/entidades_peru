@@ -17,12 +17,15 @@ export const DetailsView: React.FC<HTMLProps<HTMLDivElement>> = ({
   return (
     <div {...props}>
       <p className="text-xl font-semibold">
-        {mapSelection ?? "Perú"} ({formatNumber(showData.total)} entidades)
+        {mapSelection ?? "Perú"}: {formatNumber(showData.total)} entidades
       </p>
-      <div className="mt-1 w-full flex flex-col space-y-1">
+      <p className="text-sm font-semibold text-gray-500">
+        {showData.density.toFixed(1)} entidades por cada 100mil habitantes
+      </p>
+      <div className="mt-2 w-full flex flex-col space-y-1">
         {showData.entries.map(([poder, n], i) => (
           <div key={i}>
-            <p>
+            <p className="text-sm font-semibold">
               {poder} ({n})
             </p>
             <div
