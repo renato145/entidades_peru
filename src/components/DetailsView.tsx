@@ -22,14 +22,14 @@ export const DetailsView: React.FC<HTMLProps<HTMLDivElement>> = ({
       <p className="text-sm tracking-wide font-semibold text-gray-500">
         {showData.density.toFixed(1)} entidades por cada 100mil habitantes
       </p>
-      <div className="mt-2 w-full flex flex-col space-y-1">
+      <div className="mt-3 w-full flex flex-col space-y-2">
         {showData.entries.map(([poder, n], i) => (
           <div key={i}>
-            <p className="text-sm text-gray-800 font-semibold tracking-wider">
+            <p className="text-sm text-gray-800 font-medium tracking-wide">
               {poder} ({n})
             </p>
             <div
-              className="bg-blue-900 h-3"
+              className="bg-blue-900 h-5"
               style={{ width: `${(100 * n) / showData.max}%` }}
             />
           </div>
