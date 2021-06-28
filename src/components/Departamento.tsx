@@ -28,7 +28,7 @@ export const Departamento: React.FC<Props> = ({
     <path
       className={`land ${isSelected === "selected" ? "selected-land" : ""}`}
       fill={scale(departamentoData?.total ?? 0)}
-      opacity={isSelected === "other" ? 0.5 : 1.0}
+      opacity={isSelected === "other" ? 0.6 : 1.0}
       d={path}
       onPointerEnter={() => setMapSelection(departamento)}
       onPointerLeave={() => setMapSelection(null)}

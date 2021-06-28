@@ -24,7 +24,7 @@ export const ColorLegend: React.FC<Props> = ({
   legendMargins,
   scale,
   orientation = "horizontal",
-  ticks = 2,
+  ticks = 0,
   tickHeight = 8,
   textOffset = 15,
 }) => {
