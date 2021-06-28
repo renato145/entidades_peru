@@ -8,7 +8,7 @@ import { Margins, Size } from "../types";
 import { ColorLegend } from "./ColorLegend";
 
 const mapSize: Size = { width: 540, height: 800 };
-const svgSize: Size = { width: mapSize.width, height: mapSize.height + 80 };
+const svgSize: Size = { width: mapSize.width, height: mapSize.height + 100 };
 const legendMargins: Margins = {
   left: 20,
   right: 20,

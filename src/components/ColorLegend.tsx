@@ -3,6 +3,7 @@ import { range, ScaleSequential, format } from "d3";
 import { useAtomValue } from "jotai/utils";
 import { Margins, Size } from "../types";
 import { selectedDataAtom } from "../atoms/map";
+import { colorVarAtom } from "../atoms/plotSettings";
 
 interface Props {
   mapSize: Size;
@@ -36,6 +37,7 @@ export const ColorLegend: React.FC<Props> = ({
   const selectedData = useAtomValue(selectedDataAtom);
   const selectedDataPerc = ((selectedData?.total ?? 0 - x0) / x1) * 100;
   const selectedDataX = (selectedDataPerc * legendSize.width) / 100;
+  const colorVar = useAtomValue(colorVarAtom);
 
   return (
     <g>
@@ -60,6 +62,15 @@ export const ColorLegend: React.FC<Props> = ({
           mapSize.height + legendMargins.top
         })`}
       >
+        <text
+          x={2}
+          y={-6}
+          className="text-sm text-gray-800 fill-current font-semibold"
+        >
+          {colorVar === "number"
+            ? "Nro de entidades"
+            : "Nro de entidades por mil habitantes"}
+        </text>
         <rect
           width={legendSize.width}
           height={legendSize.height}
