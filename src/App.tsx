@@ -4,6 +4,7 @@ import { Map } from "./components/Map";
 import { DetailsView } from "./components/DetailsView";
 import { PlotSettings } from "./components/PlotSettings";
 import { DataTable } from "./components/DataTable";
+import { DataSourcesInfo } from "./components/DataSourcesInfo";
 
 export const App = () => {
   return (
@@ -21,10 +22,8 @@ export const App = () => {
                 <DetailsView className="mt-6" />
               </div>
               <div className="flex flex-col">
-                <button className="self-end mr-2 text-sm font-medium text-blue-800 hover:text-blue-600">
-                  (Ver información acerca de las fuentes de datos)
-                </button>
-                <DataTable className="self-center" />
+                <DataSourcesInfo className="flex flex-col w-full max-w-md" />
+                <DataTable className="max-w-md" />
               </div>
             </div>
           </div>

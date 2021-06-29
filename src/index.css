@@ -8,6 +8,10 @@
   body {
     @apply text-gray-900 antialiased bg-gray-50 font-custom;
   }
+
+	a {
+		@apply underline text-blue-800 hover:text-blue-600 transition;
+	}
 }
 
 @layer utilities {
