@@ -1,6 +1,7 @@
 {
   "name": "entidades_peru",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.2",
@@ -30,7 +31,8 @@
     "eject": "react-scripts eject",
     "serve": "serve -s build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "justdeploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
