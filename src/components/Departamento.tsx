@@ -16,12 +16,12 @@ export const Departamento: React.FC<Props> = ({
   path,
   scale,
 }) => {
-  const { isSelectedAtom, departamentoDataAtom } = useMemo(() => {
-    const isSelectedAtom = createSelectionStatusAtom(departamento);
+  const { selectionStatusAtom, departamentoDataAtom } = useMemo(() => {
+    const selectionStatusAtom = createSelectionStatusAtom(departamento);
     const departamentoDataAtom = createDepartamentoDataAtom(departamento);
-    return { isSelectedAtom, departamentoDataAtom };
+    return { selectionStatusAtom, departamentoDataAtom };
   }, [departamento]);
-  const isSelected = useAtomValue(isSelectedAtom);
+  const selectionStatus = useAtomValue(selectionStatusAtom);
   const departamentoData = useAtomValue(departamentoDataAtom);
   const setMapSelection = useUpdateAtom(mapSelectionAtom);
   const colorVar = useAtomValue(colorVarAtom);
@@ -35,14 +35,18 @@ export const Departamento: React.FC<Props> = ({
 
   return (
     <path
-      className={`land ${isSelected === "selected" ? "selected-land" : ""}`}
+      className={`land ${
+        selectionStatus === "selected"
+          ? "selected-land"
+          : selectionStatus === "other"
+          ? "grayscale opacity-50"
+          : ""
+      }`}
       transform={
         departamento === "Callao" ? "scale(4),translate(-140,-384)" : ""
       }
       style={departamento === "Callao" ? { strokeWidth: 0.3 } : {}}
-      scale={1.9}
       fill={fillColor}
-      opacity={isSelected === "other" ? 0.6 : 1.0}
       d={path}
       onPointerEnter={() => setMapSelection(departamento)}
       onPointerLeave={() => setMapSelection(null)}

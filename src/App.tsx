@@ -23,7 +23,7 @@ export const App = () => {
               </div>
               <div className="flex flex-col">
                 <DataSourcesInfo className="flex flex-col w-full max-w-md" />
-                <DataTable className="max-w-md" />
+                <DataTable />
               </div>
             </div>
           </div>

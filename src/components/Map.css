@@ -1,5 +1,4 @@
 .land {
-	@apply transition-all;
 	stroke: #666;
 	stroke-width: 1px;
 }

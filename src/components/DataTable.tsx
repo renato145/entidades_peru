@@ -1,8 +1,10 @@
 import React, { HTMLProps } from "react";
+import { useAtom } from "jotai";
 import { useAtomValue } from "jotai/utils";
 import { format, descending } from "d3";
 import { dataSummaryAtom } from "../atoms/data";
 import { colorVarAtom } from "../atoms/plotSettings";
+import { mapSelectionAtom } from "../atoms/map";
 
 const headers = [
   "Departamento",
@@ -14,6 +16,8 @@ const headers = [
 const formatNumber = format(",");
 
 export const DataTable: React.FC<HTMLProps<HTMLDivElement>> = (props) => {
+  const [selectedDepartamento, setSelectedDepartamento] =
+    useAtom(mapSelectionAtom);
   const colorVar = useAtomValue(colorVarAtom);
   const varIdx = colorVar === "number" ? 2 : 3;
   const data = Array.from(useAtomValue(dataSummaryAtom))
@@ -50,7 +54,15 @@ export const DataTable: React.FC<HTMLProps<HTMLDivElement>> = (props) => {
           {data.map((row, i) => (
             <tr
               key={i}
-              className={`${i % 2 === 0 ? "bg-blue-100" : "bg-gray-50"}`}
+              className={`${
+                row[0] === selectedDepartamento
+                  ? "bg-blue-900 text-white"
+                  : i % 2 === 0
+                  ? "bg-blue-100"
+                  : "bg-gray-50"
+              } cursor-default`}
+              onPointerEnter={() => setSelectedDepartamento(row[0] as string)}
+              onPointerLeave={() => setSelectedDepartamento(null)}
             >
               {row.map((v, j) => (
                 <td
