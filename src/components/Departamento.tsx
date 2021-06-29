@@ -35,17 +35,21 @@ export const Departamento: React.FC<Props> = ({
 
   return (
     <path
-      className={`land ${
+      className={`stroke-current text-gray-700 ${
         selectionStatus === "selected"
-          ? "selected-land"
+          ? "selected-land stroke-[3px]"
           : selectionStatus === "other"
-          ? "grayscale opacity-50"
+          ? "opacity-25"
           : ""
       }`}
       transform={
         departamento === "Callao" ? "scale(4),translate(-140,-384)" : ""
       }
-      style={departamento === "Callao" ? { strokeWidth: 0.3 } : {}}
+      style={
+        departamento !== "Callao"
+          ? {}
+          : { strokeWidth: selectionStatus === "selected" ? 0.7 : 0.3 }
+      }
       fill={fillColor}
       d={path}
       onPointerEnter={() => setMapSelection(departamento)}
