@@ -1,22 +1,26 @@
 {
   "files": {
-    "main.css": "/entidades_peru/static/css/main.cbcf64b9.chunk.css",
-    "main.js": "/entidades_peru/static/js/main.d70e80f3.chunk.js",
-    "main.js.map": "/entidades_peru/static/js/main.d70e80f3.chunk.js.map",
-    "runtime-main.js": "/entidades_peru/static/js/runtime-main.5a39d57f.js",
-    "runtime-main.js.map": "/entidades_peru/static/js/runtime-main.5a39d57f.js.map",
-    "static/js/2.afa79bb6.chunk.js": "/entidades_peru/static/js/2.afa79bb6.chunk.js",
-    "static/js/2.afa79bb6.chunk.js.map": "/entidades_peru/static/js/2.afa79bb6.chunk.js.map",
-    "static/js/3.4e858320.chunk.js": "/entidades_peru/static/js/3.4e858320.chunk.js",
-    "static/js/3.4e858320.chunk.js.map": "/entidades_peru/static/js/3.4e858320.chunk.js.map",
-    "index.html": "/entidades_peru/index.html",
-    "static/css/main.cbcf64b9.chunk.css.map": "/entidades_peru/static/css/main.cbcf64b9.chunk.css.map",
-    "static/js/2.afa79bb6.chunk.js.LICENSE.txt": "/entidades_peru/static/js/2.afa79bb6.chunk.js.LICENSE.txt"
+    "main.css": "./static/css/main.cbcf64b9.chunk.css",
+    "main.js": "./static/js/main.800cc3df.chunk.js",
+    "main.js.map": "./static/js/main.800cc3df.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.01ef8084.js",
+    "runtime-main.js.map": "./static/js/runtime-main.01ef8084.js.map",
+    "static/js/2.11ac1e87.chunk.js": "./static/js/2.11ac1e87.chunk.js",
+    "static/js/2.11ac1e87.chunk.js.map": "./static/js/2.11ac1e87.chunk.js.map",
+    "static/js/3.0c012d95.chunk.js": "./static/js/3.0c012d95.chunk.js",
+    "static/js/3.0c012d95.chunk.js.map": "./static/js/3.0c012d95.chunk.js.map",
+    "static/js/4.50146772.chunk.js": "./static/js/4.50146772.chunk.js",
+    "static/js/4.50146772.chunk.js.map": "./static/js/4.50146772.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.cbcf64b9.chunk.css.map": "./static/css/main.cbcf64b9.chunk.css.map",
+    "static/js/2.11ac1e87.chunk.js.LICENSE.txt": "./static/js/2.11ac1e87.chunk.js.LICENSE.txt",
+    "static/media/entidades.30d1f51e.csv": "./static/media/entidades.30d1f51e.csv",
+    "static/media/poblacion_departamentos.0152a47d.csv": "./static/media/poblacion_departamentos.0152a47d.csv"
   },
   "entrypoints": [
-    "static/js/runtime-main.5a39d57f.js",
-    "static/js/2.afa79bb6.chunk.js",
+    "static/js/runtime-main.01ef8084.js",
+    "static/js/2.11ac1e87.chunk.js",
     "static/css/main.cbcf64b9.chunk.css",
-    "static/js/main.d70e80f3.chunk.js"
+    "static/js/main.800cc3df.chunk.js"
   ]
 }
