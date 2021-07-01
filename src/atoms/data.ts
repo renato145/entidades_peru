@@ -1,12 +1,14 @@
 import { atom } from "jotai";
-import { csv, json, rollups, descending, sum, max } from "d3";
+import { csv, rollups, descending, sum, max } from "d3";
 import { feature } from "topojson-client";
 import { TData, TPopulationData, TSummaryData } from "../types";
+import csv_entidades from "../data/entidades.csv";
+import csv_poblacion from "../data/poblacion_departamentos.csv";
 
 /** Load population data */
 export const populationDataAtom = atom(async () => {
   const csvData = await csv(
-    "poblacion_departamentos.csv",
+    csv_poblacion,
     (row: any) => ({ ...row, total: +row.total } as TPopulationData)
   );
   const data = new Map<string, number>();
@@ -35,7 +37,7 @@ export const getSummary = (data: TData[]) => {
 
 /** Load raw data */
 export const dataAtom = atom(
-  async () => await csv("entidades.csv", (row: any) => row as TData)
+  async () => await csv(csv_entidades, (row: any) => row as TData)
 );
 
 const densityMul = 100_000;
@@ -79,12 +81,14 @@ export const createDepartamentoDataAtom = (departamento: string) =>
 
 /** Load geojson data */
 export const geodataAtom = atom(async () => {
-  const data = await json("departamentos.json").then((topology) => {
-    const featureCollection = feature(topology as any, "departamentos");
-    return featureCollection as any as GeoJSON.FeatureCollection<
-      GeoJSON.Geometry,
-      { departamento: string }
-    >;
-  });
+  const jsonData = (await import("../data/departamentos.json"))
+    .default as any as TopoJSON.Topology;
+  const data = feature(
+    jsonData,
+    "departamentos"
+  ) as any as GeoJSON.FeatureCollection<
+    GeoJSON.Geometry,
+    { departamento: string }
+  >;
   return data;
 });
